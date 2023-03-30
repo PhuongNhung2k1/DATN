@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_register_success">
+        <observer name="ChangeWhenCreteAccount" instance="AHT\Route\Observer\ChangeDisplayLoginPost" />
+    </event>
+    <event name="customer_changeAddress">
+        <observer name="Change_Address" instance="AHT\Route\Observer\ChangeAddressSaveAfter" />
+    </event>
+
+    <event name="customer_address_save_after">
+        <observer name="Change_Address" instance="AHT\Route\Observer\ChangeAddressSaveAfter" />
+    </event>
+</config>
