@@ -1,0 +1,5 @@
+Một số lưu ý khi sử dụng github trên ubuntu.
+- Trên ubuntu sử dụng git bằng ssh key.
+- Gender ssh key ở máy và lưu vào trên github/setting
+- trong file .gitinore được tạo để add những lệnh config và cần gõ trên terminal phía HOme tìm file bash. vd => ssh=' alias ssh='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/git'
+
