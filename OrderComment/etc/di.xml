@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="AHT\OrderComment\Api\Data\OrderCommentInterface" type="AHT\OrderComment\Model\Data\OrderComment" />
+    <preference for="AHT\OrderComment\Api\OrderCommentManagementInterface" type="AHT\OrderComment\Model\OrderCommentManagement" />
+    <preference for="AHT\OrderComment\Api\GuestOrderCommentManagementInterface" type="AHT\OrderComment\Model\GuestOrderCommentManagement" />
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="aht_order_comment" xsi:type="string">sales_order.aht_order_comment</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="aht_load_ordercomment" type="AHT\OrderComment\Plugin\Model\Order\LoadOrderComment"/>
+    </type>
+
+<!--    display order note text in checkout/shipping -->
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="add_custom_field_checkout_shipping_form" type="AHT\OrderComment\Plugin\Checkout\Block\LayoutProcessorPlugin" sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="save_custom_field_to_quote_table" type="AHT\OrderComment\Plugin\Checkout\Model\ShippingInformationManagement" sortOrder="20" />
+    </type>
+<!--    plugin in send email -->
+    <type name="Magento\Sales\Model\Order\Email\Container\Template">
+        <plugin name="add-vars-shipping" type="AHT\OrderComment\Plugin\OrderComment" sortOrder="1"/>
+    </type>
+
+</config>
+

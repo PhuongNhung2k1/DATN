@@ -1,0 +1,12 @@
+<?php if($comment = $block->getOrderComment()):?>
+    <section class="admin__page-section">
+        <div class="admin__page-section-title">
+<!--            Display note in admin detail view -->
+            <span class="title"><?php /* @escapeNotVerified */ echo __('Order Customer Note') ?></span>
+        </div>
+        <div class="admin__page-section-content">
+<!--            Order Note test-->
+            <?php echo nl2br($block->escapeHtml($comment));?>
+        </div>
+    </section>
+<?php endif; ?>
