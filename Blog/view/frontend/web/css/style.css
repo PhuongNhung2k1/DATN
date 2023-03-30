@@ -1,0 +1,16 @@
+/*CSS for catgory */
+.listCategories {
+    list-style-type: none;
+    box-shadow: lightgrey;
+    border: 1px solid #0000;
+}
+.listCategories li{
+    border-bottom: 1px solid #ccc;
+}
+a:hover{
+    color: red;
+}
+/*CSS for post */
+a.post_url:hover{
+    color: red;
+}

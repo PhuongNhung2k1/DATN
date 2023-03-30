@@ -1,0 +1,33 @@
+<?php
+/** @var $block Search */
+
+use AHT\Blog\Block\Search;
+
+?>
+<div class="block block-search">
+    <div class="block block-title"><strong><?=__('Search')?></strong></div>
+    <div class="block block-content">
+        <form class="form minisearch" id="search_mini_form"
+              action="<?= $block->getSearchUrl()?>" method="get">
+            <div class="field search">
+                <label class="label" for="search" data-role="minisearch-label">
+                    <span><?=__('Search')?></span>
+                </label>
+                <div class="control">
+                    <input id="search" type="text" name="key" value="" placeholder="<?=__('Search post here...')?>"/>
+                    <div id="search_autocomplete" class="seach-autocomplete"></div>
+                    <?= $block->getChildHtml() ?>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="submit"
+                        title="<?=__('Search')?>"
+                        class="action search"
+                        aria-label="Search">
+                    <span><?=__('Search')?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

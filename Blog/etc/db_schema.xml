@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+    <!--
+    /**
+     * Copyright © Magento, Inc. All rights reserved.
+     * See COPYING.txt for license details.
+     */
+    -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="aht_blog_category_entity">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="50" comment="Name"/>
+        <column xsi:type="int" name="parent_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Parent Category ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="aht_blog_post_entity">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="smallint" name="status" nullable="false" comment="Status"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="50" comment="Name"/>
+        <column xsi:type="varchar" name="category_id" nullable="false" default="0" comment="Category"/>
+        <column xsi:type="varchar" name="image" nullable="true" length="255" comment="Image"/>
+        <column xsi:type="text" name="short_description" nullable="true" comment="Short Description"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="varchar" name="tag" nullable="true" length="50" comment="Tag"/>
+        <column xsi:type="date" name="publish_date" nullable="false" comment="Publish Date"/>
+        <column xsi:type="varchar" name="url_key" nullable="false" length="255" comment="URL Key"/>
+        <column xsi:type="text" name="author" nullable="false" comment="Author"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="aht_blog_category_post" resource="default" engine="innodb"
+           comment="Post To Category Linkage Table">
+        <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="category_id" unsigned="true" nullable="false"
+                default="0" comment="Category ID"/>
+        <column xsi:type="int" name="post_id" unsigned="true" nullable="false"
+                default="0" comment="Post ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+            <column name="category_id"/>
+            <column name="post_id"/>
+        </constraint>
+<!--        rang buoc du lieu voi khoa -->
+        <constraint xsi:type="foreign" referenceId="BLOG_CTGR_POST_POST_ID_BLOG_POST_ENTT_ENTT_ID" table="aht_blog_category_post"
+                    column="post_id" referenceTable="aht_blog_post_entity" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="BLOG_CTGR_POST_CTGR_ID_BLOG_CTGR_ENTT_ENTT_ID"
+                    table="aht_blog_category_post" column="category_id" referenceTable="aht_blog_category_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="BLOG_CATEGORY_POST_CATEGORY_ID_POST_ID">
+            <column name="category_id"/>
+            <column name="post_id"/>
+        </constraint>
+        <index referenceId="BLOG_CATEGORY_POST_POST_ID" indexType="btree">
+            <column name="post_id"/>
+        </index>
+    </table>
+</schema>

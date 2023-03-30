@@ -1,0 +1,53 @@
+{
+    "aht_blog_category_entity": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "parent_id": true,
+            "level": true
+        },
+        "index": {
+            "AHT_BLOG_CATEGORY_ENTITY_LEVEL": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aht_blog_post_entity": {
+        "column": {
+            "entity_id": true,
+            "status": true,
+            "name": true,
+            "image": true,
+            "short_description": true,
+            "description": true,
+            "tag": true,
+            "publish_date": true,
+            "url_key": true,
+            "author": true,
+            "created_at": true,
+            "updated_at": true,
+            "category_id": true,
+            "category": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aht_blog_category_post": {
+        "column": {
+            "entity_id": true,
+            "category_id": true,
+            "post_id": true
+        },
+        "index": {
+            "AHT_BLOG_CATEGORY_POST_POST_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AHT_BLOG_CATEGORY_POST_POST_ID_AHT_BLOG_POST_ENTITY_ENTITY_ID": true,
+            "AHT_BLOG_CTGR_POST_CTGR_ID_AHT_BLOG_CTGR_ENTT_ENTT_ID": true,
+            "AHT_BLOG_CATEGORY_POST_CATEGORY_ID_POST_ID": true
+        }
+    }
+}
