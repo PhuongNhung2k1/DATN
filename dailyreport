@@ -1,1 +1,18 @@
-Daily report 
+Daily report : Progress for my project in magento 2
+				CREATE EXTRAFEE IN PROJECT 
+- Know that for create new extrafee to add in my project
+- Contruct:
+ADMIN
+Step1 : Config in admin and create to display by file routes.xml containt <route id="extrafee"><module name="Extrafee'>
+- trong phần config: create file system.xml => declare nhwugx thành phần và <resource>: các section id="name module">
+- IN <group> create fields and createName = những name sẽ lấy ra ở phần config.
++ each file will display in <depends><field id ="path to name">
+
+
+Step 2: DIsplay in frontend page:
+- in layout that name ="checkout_index_index"> create new file child name ="fee"
+- layout ="checkout_index_cart" will declare and call to commponent and file display is file.js and file.html
+ 
+ 
+Data will called and display in Model/Quote/Totals/Fee => TRong phần này sẽ tiến hành gọi dữ liệu và tính toán để hiển thị ra phía totals :
+Data will get forn Helper/Data.php by config_custom='id được định nghĩa ở phía admin file system.xml"
