@@ -1,0 +1,29 @@
+<!-- ko if: showInCheckout() -->
+
+<!-- ko if: getInitialCollapseState() == 2 -->
+<div class="shippingAddress-option opc-shippingAddress-additional comment last">
+    <div class="shippingAddress-option-title field choice">
+        <span data-bind="i18n: 'Enter Order Note?'"></span>
+    </div>
+    <div class="shippingAddress-option-content">
+        <!-- ko template: 'AHT_OrderComment/checkout/form-content' --><!-- /ko -->
+    </div>
+</div>
+<!-- /ko -->
+
+<!-- ko if: getInitialCollapseState() != 2 -->
+<div class="shippingAddress-option _collapsible opc-shippingAddress-additional comment last"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active', 'active': isInitialStateOpened()}}">
+
+    <div class="shippingAddress-option-title field choice" data-role="title">
+        <span class="action action-toggle" role="heading" aria-level="2">
+            <!-- ko i18n: 'Enter Order Note?'--><!-- /ko -->
+        </span>
+    </div>
+    <div class="shippingAddress-option-content" data-role="content">
+        <!-- ko template: 'AHT_OrderComment/checkout/form-content' --><!-- /ko -->
+    </div>
+</div>
+<!-- /ko -->
+
+<!-- /ko -->
