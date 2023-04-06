@@ -1,0 +1,28 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+<!--    change to create, update test-->
+    <preference for="AHT\Route\Api\PostRepositoryInterface" type="AHT\Route\Model\PostRepository"/>
+    <preference for="AHT\Route\Api\Data\PostInterface" type="AHT\Route\Model\Post"/>
+    <preference for="AHT\Route\Api\Data\PostSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+<!--    override in page when login-->
+    <preference for="Magento\Customer\Controller\Account\LoginPost" type="AHT\Route\Controller\Account\Login"/>
+<!--    override in page when edit Address -->
+    <preference for="Magento\Customer\Controller\Address\FormPost" type="AHT\Route\Controller\Address\FormPost"/>
+<!--    declare Plugin -->
+    <type name="AHT\Route\Controller\Training\Post">
+        <plugin name="testplugin" type="AHT\Route\Plugin\TestPlugin1"  sortOrder="10" disabled="false" />
+    </type>
+    <!--    declare Plugin createPost -->
+    <type name="Magento\Customer\Model\Account\Redirect">
+        <plugin name="CreatePost" type="AHT\Route\Plugin\CreatePostPlugin" sortOrder="20" disabled="false" />
+    </type>
+<!--        declare Plugin For Product Category-->
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="LoadedProductCollectionPlugin" type="AHT\Route\Plugin\GetLoadedProductCollectionPlugin" sortOrder="30" disabled="false" />
+    </type>
+    <!--    declare Plugin For Prefix Product -->
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="prefixProduct" type="AHT\Route\Plugin\Model\PrefixProductPlugin" disabled="false" />
+    </type>
+
+</config>

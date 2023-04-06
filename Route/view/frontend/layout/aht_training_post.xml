@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Dự báo thời tiết</title>
+    </head>
+<!--    cap nhat noi dung block -->
+    <referenceContainer name="content">
+<!--        nd block do tư dinh nghia, name theo module-->
+        <block class="AHT\Route\Block\Weather" name="aht_route" template="weather.phtml" />
+    </referenceContainer>
+
+</page>
