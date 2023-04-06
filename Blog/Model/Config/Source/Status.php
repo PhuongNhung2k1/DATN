@@ -1,0 +1,28 @@
+<?php
+
+namespace AHT\Blog\Model\Config\Source;
+
+use Magento\Framework\Option\ArrayInterface;
+
+class Status implements ArrayInterface
+{
+    /**
+     * Options getter
+     *
+     * @return array
+     */
+    public function toOptionArray()
+    {
+        return [['value' => 0, 'label' => __('Active')], ['value' => 1, 'label' => __('Inactive')], ['value' => 2, 'label' => __('Locked')]];
+    }
+
+    /**
+     * Get options in "key-value" format
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [0 => __('Active'), 1 => __('Inactive'), 2 => __('Locked')];
+    }
+}

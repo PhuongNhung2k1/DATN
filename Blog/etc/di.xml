@@ -1,0 +1,69 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+<!--    <preference for="AHT\Blog\Api\PostRepositoryInterface" type="AHT\Blog\Model\Post\PostRepository"/>-->
+<!--    <preference for="AHT\Blog\Api\Data\PostInterface" type="AHT\Blog\Model\Post"/>-->
+
+<!--    <preference for="AHT\Blog\Api\CategoryRepositoryInterface" type="AHT\Blog\Model\Category\CategoryRepository"/>-->
+<!--    <preference for="AHT\Blog\Api\Data\CategoryInterface" type="AHT\Blog\Model\Category"/>-->
+<!--    router -->
+    <preference for="Magento\Framework\App\RouterInterface" type="AHT\BLog\Controller\Router"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="blog_post_listing_data_source" xsi:type="string">blog_post_collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="blog_post_collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aht_blog_post_entity</argument>
+            <argument name="resourceModel" xsi:type="string">AHT\Blog\Model\ResourceModel\Post</argument>
+        </arguments>
+    </virtualType>
+    <!--    khai bao data provider for table -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+<!--                khai bao name de lay du lieu tu bang -->
+                <item name="blog_category_listing_data_source" xsi:type="string">blog_category_collection</item>
+            </argument>
+        </arguments>
+    </type>
+<!--    khai bao de lay data từ table -->
+    <virtualType name="blog_category_collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aht_blog_category_entity</argument>
+            <argument name="resourceModel" xsi:type="string">AHT\Blog\Model\ResourceModel\Category</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Image Uploader -->
+    <type name="AHT\Blog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">post/tmp/feature</argument>
+            <argument name="basePath" xsi:type="string">post/feature</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- End Image Uploader -->
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="blog-topmenu" type="AHT\Blog\Plugin\Block\Navigation" />
+    </type>
+
+    <type name="Magento\Cms\Model\Config\Source\Wysiwyg\Editor">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">wysiwyg/upload</argument>
+            <argument name="basePath" xsi:type="string">wysiwyg/upload</argument>
+        </arguments>
+    </type>
+    <type name="AHT\Blog\Block\DetailPost"> <!-- change name here to match your block class name -->
+        <arguments>
+            <argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,35 @@
+<?php
+use AHT\Blog\Block\DetailPost;
+
+$detailpost = $block->getDetailPost();
+?>
+<table style="width: 600px"
+>
+    <h3>
+        Detail Blog : <?=$block->getDetailPost()->getName();  ?>
+    </h3>
+   <table border="1">
+       <tr>
+           <th>Publish Date</th>
+           <th>Name</th>
+           <th>Author</th>
+           <th>Status</th>
+           <th>Image</th>
+           <th>Tag</th>
+           <th>Description</th>
+           <th>Short Description</th>
+       </tr>
+       <tr>
+           <td><?= $block->getDetailPost()->getPublishDate()?></td>
+           <td><?= $block->getDetailPost()->getName() ?></td>
+           <td><?= $block->getDetailPost()->getAuthor()?></td>
+           <td><?php if ($block->getDetailPost()->getStatus()=='1'):?>Enable
+               <?php else: ?>Disable<?php endif; ?> </td>
+           <td><img height="100px" width="150px" src="<?php echo $block->getImageUrl($block->getDetailPost()->getImage())?>"> </td>
+           <td><?= $block->getDetailPost()->getTag()?></td>
+           <td><?php echo $block->getDescContent($block->getDetailPost()->getDescription())?></td>
+           <td><?= $block->getDetailPost()->getShortDescription()?></td>
+       </tr>
+   </table>
+</table>
+

@@ -1,0 +1,15 @@
+
+<?php
+use AHT\Blog\Block\ListCategory;
+$categories = $block->getCategories();
+?>
+<h3>LIST CATEGORIES (<?php echo $categories->getSize(); ?>) </h3>
+<ul class="listCategories">
+    <?php foreach ($categories as $category):  ?>
+    <li style="text-transform: uppercase;">
+<!--       Run debug to show data in Category will auto defined field in database and render and display in template (getId,getName) -->
+        <a style="color: black" href="<?= $block->getCategoryById($category->getId())?>" ><?= $category->getName()?>
+        </a>
+    </li>
+    <?php endforeach;  ?>
+</ul>

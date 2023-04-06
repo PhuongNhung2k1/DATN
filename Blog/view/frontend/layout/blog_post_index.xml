@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="AHT_Blog::css/style.css"/>
+    </head>
+    <body>
+<!--      each class to compare to template u called -->
+<!--      Demo : block class="Mageplaza\HelloWorld\Block\HelloWorld" name="your_block_name" template="Mageplaza_HelloWorld::helloworld.phtml"-->
+
+        <referenceContainer name="main">
+            <block class="AHT\Blog\Block\ListPost" name="list.posts" template="AHT_Blog::list_post.phtml" cacheable="false" />
+        </referenceContainer>
+
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true" />
+
+        <referenceContainer name="sidebar.additional">
+            <block class="AHT\Blog\Block\ListCategory" name="list.categories" template="AHT_Blog::list_category.phtml" cacheable="false" />
+        </referenceContainer>
+
+        <referenceContainer name="main.content">
+            <block class="AHT\Blog\Block\Search" name="post.search" as="topSearch" template="AHT_Blog::form_search.phtml" before="-"/>
+        </referenceContainer>
+    </body>
+</page>
