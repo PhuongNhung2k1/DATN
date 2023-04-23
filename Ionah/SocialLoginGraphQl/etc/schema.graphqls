@@ -1,0 +1,57 @@
+#Ionah_SocialLoginGraphQl Module Social Login GraphQL
+
+type Customer @doc(description: "Defines the customer name, addresses, and other details.") {
+    social_links: [ListSocialLinks] @doc(description: "An array containing the list social linked.")
+}
+
+type ListSocialLinks @doc(description: "Contains detailed information about a customer's social linked.") {
+    id: Int
+    social_login_id: String
+    social_login_type: String
+    social_email: String
+    exist_email: Int
+    created_at: String
+    last_login: String
+    btn_url: String
+    linked: Boolean
+    icon: String
+    label: String
+}
+
+type Query {
+    socialLogin (
+        access_token: String! @doc(description: "Query by identifier."),
+        type: String! @doc(description: "Query by type.")
+    ) : GenerateSocialCustomerToken @resolver( class: "Ionah\\SocialLoginGraphQl\\Model\\Resolver\\GenerateSocialCustomerToken") @doc(description: "Query by Query Customer Info By Identifier.")
+}
+
+type GenerateSocialCustomerToken {
+    token: String @doc(description: "The customer token")
+    expired_after_hours: String @doc(description: "The customer token will be expired in x hours. If x is zero, mean never expired")
+}
+
+type Mutation {
+    customerSocialLink (
+        access_token: String @doc(description: "Customer access token from social.")
+        type: String! @doc(description: "Query by type.")
+    ): CustomerSocialLink @resolver(class: "Ionah\\SocialLoginGraphQl\\Model\\Resolver\\CustomerSocialLink") @doc(description:"Social network account link.")
+    customerSocialUnLink (
+        type: String @doc(description: "Query by type.")
+    ): CustomerSocialUnLink @resolver(class: "Ionah\\SocialLoginGraphQl\\Model\\Resolver\\CustomerSocialUnLink") @doc(description:"Social network account link.")
+}
+
+type CustomerSocialLink {
+    identifier: String
+    type : String
+    email: String
+    lastname: String
+    firstname: String
+    icon: String
+    label: String
+}
+
+type CustomerSocialUnLink {
+    is_unlinked: Boolean
+    message: String
+}
+

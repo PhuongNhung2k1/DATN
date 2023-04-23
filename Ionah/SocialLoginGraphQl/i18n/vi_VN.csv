@@ -1,0 +1,9 @@
+"Customer does not exist.", "Tài khoản này không tồn tại"
+"Email is Null, Please enter email in your %1 profile", "Email không được bỏ trống."
+"This social network has been linked", "Tài khoản mạng xã hội này đã được liên kết trước đó"
+"Email already used by another customer.", "Email đã được sử dụng bởi người dùng khác"
+"Your email does not match the linked email.", "Email của bạn không trùng với tài khoản liên kết, Vui lòng cập nhật email của bạn"
+"Can\'t link social media accounts now, Please try again later.", "Không thể liên kết tài khoản mạng xã hội bây giờ, vui lòng thử lại sau"
+"Unlink successful","Hủy liên kết thành công"
+"Unlink failed","Hủy liên kết thất bại"
+
